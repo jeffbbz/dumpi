@@ -13,7 +13,32 @@ Dumpi is a TypeScript/React/Express webhook inspection tool designed to help dev
 | Databases     | PostgreSQL (structured data), MongoDB (document storage) |
 | Communication | RESTful APIs, WebSockets (Socket.IO) |
 
-### Typical User Workflow
+# What Are Webhooks?
+
+Webhooks are automated messages sent from one application to another when a specific event occurs. They enable real-time data flow between systems without constant polling (repeatedly checking for updates).
+
+### How Webhooks Work
+
+1. **Event Occurs** (e.g., a payment is processed, a new user signs up).
+2. **Source App Sends Data** to a predefined URL (your "webhook endpoint").
+3. **Destination App Receives & Acts** on the data (e.g., updates a database, triggers a notification).
+
+### Webhooks vs. APIs
+
+| Feature       | Webhooks | APIs (REST/GraphQL) |
+|--------------|----------|---------------------|
+| **Initiation** | Server-triggered (pushes data) | Client-triggered (pulls data) |
+| **Timing**    | Real-time (event-driven) | On-demand (manual requests) |
+| **Efficiency** | No wasted polling | Requires frequent polling for updates |
+
+### Common Use Cases
+
+- **Payment Gateways** (e.g., Stripe sends payment success/failure alerts)
+- **CI/CD Pipelines** (e.g., GitHub triggers a build on code push)
+- **Chat Apps** (e.g., Slack gets notified when a Trello task is updated)
+- **User Authentication** (e.g., Auth0 sends user login events)
+
+# What Might a Typical Dumpi User Workflow Look Like?
 
 1. Create a Webhook Bin
    - User requests a new bin via the frontend
@@ -32,7 +57,7 @@ Dumpi is a TypeScript/React/Express webhook inspection tool designed to help dev
    - Frontend fetches complete details from MongoDB
    - Details are displayed in a structured, readable format
 
-### Receiving and Processing Webhooks
+# How Does Dumpi Receive and Process Webhooks?
 Once a bin is created, external services can send webhooks to the generated endpoint URL.
 
 When a webhook is received at the `/endpoint/:binId` route, the backend:
